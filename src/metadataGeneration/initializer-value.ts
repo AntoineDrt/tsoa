@@ -12,6 +12,8 @@ export const getInitializerValue = (initializer?: ts.Expression, typeChecker?: t
       return arrayLiteral.elements.map(element => getInitializerValue(element, typeChecker));
     case ts.SyntaxKind.StringLiteral:
       return (initializer as ts.StringLiteral).text;
+    case ts.SyntaxKind.NoSubstitutionTemplateLiteral:
+      return (initializer as ts.NoSubstitutionTemplateLiteral).text;
     case ts.SyntaxKind.TrueKeyword:
       return true;
     case ts.SyntaxKind.FalseKeyword:
