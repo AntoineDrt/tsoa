@@ -5,7 +5,6 @@ import { isVoidType } from '../utils/isVoidType';
 import { convertColonPathParams, normalisePath } from './../utils/pathUtils';
 import { SpecGenerator } from './specGenerator';
 import { Swagger } from './swagger';
-
 /**
  * TODO:
  * Handle formData parameters
@@ -94,16 +93,25 @@ export class SpecGenerator3 extends SpecGenerator {
         const oauth = (defs[key] || {
           type: 'oauth2',
           description: definitions[key].description,
+          //@ts-ignore
           flows: definition.flows || {},
         }) as Swagger.OAuth2Security3;
 
+        //@ts-ignore
         if (definition.flow === 'password') {
+          //@ts-ignore
           oauth.flows.password = { tokenUrl: definition.tokenUrl, scopes: definition.scopes || {} } as Swagger.OAuth2SecurityFlow3;
+          //@ts-ignore
         } else if (definition.flow === 'accessCode') {
+          //@ts-ignore
           oauth.flows.authorizationCode = { tokenUrl: definition.tokenUrl, authorizationUrl: definition.authorizationUrl, scopes: definition.scopes || {} } as Swagger.OAuth2SecurityFlow3;
+          //@ts-ignore
         } else if (definition.flow === 'application') {
+          //@ts-ignore
           oauth.flows.clientCredentials = { tokenUrl: definition.tokenUrl, scopes: definition.scopes || {} } as Swagger.OAuth2SecurityFlow3;
+          //@ts-ignore
         } else if (definition.flow === 'implicit') {
+          //@ts-ignore
           oauth.flows.implicit = { authorizationUrl: definition.authorizationUrl, scopes: definition.scopes || {} } as Swagger.OAuth2SecurityFlow3;
         }
 
